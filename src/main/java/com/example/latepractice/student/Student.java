@@ -12,6 +12,8 @@ public class Student {
     private Long studentId;
     @Column
     private String studentName;
+
+    private String studentEmail;
     @Column
     private String studentAddress;
     @Column
@@ -20,18 +22,22 @@ public class Student {
     public Student() {
     }
 
-    public Student(String studentName, String studentAddress, Integer studentAge) {
+    public Student(String studentName, String studentEmail, String studentAddress, Integer studentAge) {
         this.studentName = studentName;
+        this.studentEmail = studentEmail;
         this.studentAddress = studentAddress;
         this.studentAge = studentAge;
     }
 
-    public Student(Long studentID, String studentName, String studentAddress, Integer studentAge) {
+    public Student(Long studentID, String studentName, String studentEmail, String studentAddress, Integer studentAge) {
         this.studentId = studentID;
         this.studentName = studentName;
+        this.studentEmail = studentEmail;
         this.studentAddress = studentAddress;
         this.studentAge = studentAge;
     }
+
+
 
     public Long getStudentId() {
         return studentId;
@@ -65,6 +71,14 @@ public class Student {
         this.studentAge = studentAge;
     }
 
+    public String getStudentEmail() {
+        return studentEmail;
+    }
+
+    public void setStudentEmail(String studentEmail) {
+        this.studentEmail = studentEmail;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -84,8 +98,11 @@ public class Student {
                 "studentID=" + studentId +
                 ", studentName='" + studentName + '\'' +
                 ", studentAddress='" + studentAddress + '\'' +
-                ", studentAge=" + studentAge +
+                ", studentAge=" + studentAge + '\'' +
+                ", studentEmail=" +studentEmail +
                 '}';
     }
+
+
 }
 
