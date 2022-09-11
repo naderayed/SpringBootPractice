@@ -30,7 +30,6 @@ public class Student {
     @Size(min = 2, max = 220)
     private String studentAddress;
     @Column
-    @NotBlank
     @Min(12)
     private Integer studentAge;
 
