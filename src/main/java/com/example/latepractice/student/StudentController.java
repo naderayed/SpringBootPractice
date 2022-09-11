@@ -2,8 +2,10 @@ package com.example.latepractice.student;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -17,22 +19,26 @@ public class StudentController {
     }
 
     @GetMapping("/all")
+    @PreAuthorize("hasAuthority('student_read')")
     public List<Student> getAllStudents(){
 
         return  studentService.getAllStudentsService();
     }
 
     @GetMapping(path = "{studentId}")
+    @PreAuthorize("hasAuthority('student_read')")
     public Student getStudent(@PathVariable ("studentId") long studentId){
         return studentService.getStudentService(studentId);
     }
     @PostMapping
-    public void registerStudent(@RequestBody Student student) throws IllegalStateException{
+    @PreAuthorize("hasAuthority('student_write')")
+    public void registerStudent( @Valid @RequestBody  Student student) throws IllegalStateException{
 
         studentService.registerStudentService(student);
     }
 
     @PutMapping(path = "{studentId}")
+    @PreAuthorize("hasAuthority('student_write')")
     public void updateStudent(
             @PathVariable("studentId") long studentId,
             @RequestParam(required = false) String studentName,

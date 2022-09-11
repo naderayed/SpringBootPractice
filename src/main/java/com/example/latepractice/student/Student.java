@@ -1,6 +1,12 @@
 package com.example.latepractice.student;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 import java.util.Objects;
 
 @Entity
@@ -11,12 +17,21 @@ public class Student {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long studentId;
     @Column
+    @NotBlank
+    @Size(min = 2,max = 48)
     private String studentName;
 
+    @Column
+    @NotBlank
+    @Email
     private String studentEmail;
     @Column
+    @NotBlank
+    @Size(min = 2, max = 220)
     private String studentAddress;
     @Column
+    @NotBlank
+    @Min(12)
     private Integer studentAge;
 
     public Student() {
